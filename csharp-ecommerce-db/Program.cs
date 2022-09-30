@@ -23,6 +23,11 @@ foreach(Customer customer in customers)
 {
     Console.WriteLine(customer.Name + " " + customer.Surname + " ------> " + customer.Email);
 }
+
+//Update
+customers[0].Email = "email@modificata.it";
+    db.SaveChanges();
+
 public class EcommerceContext: DbContext
 {
     public DbSet<Employee> Employees { get; set; }
