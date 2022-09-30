@@ -3,34 +3,55 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 
 Console.WriteLine("");
-
-//create 
-
-EcommerceContext db = new EcommerceContext();
-//Customer newCustomer = new Customer();
-//newCustomer.Name = "Daniele";
-//newCustomer.Surname = "Ciccarelli";
-//newCustomer.Email = "doncicca@gmail.com";
-//db.Add(newCustomer);
-//db.SaveChanges();
-
-//read 
-
-Console.WriteLine("Recupero Lista Utenti:");
-List<Customer> customers = db.Customers.OrderBy(customer => customer.Name).ToList<Customer>();
-
-foreach(Customer customer in customers)
+Console.WriteLine("Benvenuto! premi 1 per aggiungere un nuovo cliente");
+int userChoice = Convert.ToInt32(Console.ReadLine());
+switch (userChoice)
 {
-    Console.WriteLine(customer.Name + " " + customer.Surname + " ------> " + customer.Email);
+    case 1:
+        //create 
+        Console.WriteLine("Inserisci il nome del cliente");
+        string customerName = Console.ReadLine();
+
+        Console.WriteLine("Inserisci il cognome del cliente");
+        string customerSurname = Console.ReadLine();
+
+        Console.WriteLine("Inserisci email del cliente");
+        string customerEmail = Console.ReadLine();
+
+
+
+        EcommerceContext db = new EcommerceContext();
+        Customer newCustomer = new Customer();
+        newCustomer.Name = customerName;
+        newCustomer.Surname = customerSurname;
+        newCustomer.Email = customerEmail;
+        db.Add(newCustomer);
+        db.SaveChanges();
+        Console.WriteLine("Cliente aggiunto correttamente!");
+
+
+
+        //read 
+        Console.WriteLine("------------------------------------");
+        Console.WriteLine("Ecco la lista Clienti aggiornata:");
+        Console.WriteLine("");
+        List<Customer> customers = db.Customers.OrderBy(customer => customer.Name).ToList<Customer>();
+
+        foreach (Customer customer in customers)
+        {
+            Console.WriteLine(customer.Name + " " + customer.Surname + " ------> " + customer.Email);
+        }
+        break;
 }
 
+
 //Update
-customers[0].Email = "email@modificata.it";
-    db.SaveChanges();
+//customers[0].Email = "email@modificata.it";
+    //db.SaveChanges();
 
 //Remove
-db.Remove(customers[1]);
-db.SaveChanges();
+//db.Remove(customers[1]);
+//db.SaveChanges();
 public class EcommerceContext: DbContext
 {
     public DbSet<Employee> Employees { get; set; }
