@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 
 Console.WriteLine("");
-Console.WriteLine("Benvenuto! premi 1 per aggiungere un nuovo cliente");
+Console.WriteLine("Benvenuto! \n premi 1 per aggiungere un nuovo cliente \n premi 2 per aggiungere un nuovo prodotto");
 int userChoice = Convert.ToInt32(Console.ReadLine());
 switch (userChoice)
 {
@@ -17,8 +17,6 @@ switch (userChoice)
 
         Console.WriteLine("Inserisci email del cliente");
         string customerEmail = Console.ReadLine();
-
-
 
         EcommerceContext db = new EcommerceContext();
         Customer newCustomer = new Customer();
@@ -40,6 +38,41 @@ switch (userChoice)
         foreach (Customer customer in customers)
         {
             Console.WriteLine(customer.Name + " " + customer.Surname + " ------> " + customer.Email);
+        }
+        break;
+
+    case 2:
+        //create 
+        Console.WriteLine("Inserisci il nome del prodotto");
+        string productName = Console.ReadLine();
+
+        Console.WriteLine("Inserisci la descrizione del prodotto");
+        string productDescription = Console.ReadLine();
+
+        Console.WriteLine("Inserisci il prezzo del prodotto");
+        double productPrice = Convert.ToInt32(Console.ReadLine());
+
+        EcommerceContext db2 = new EcommerceContext();
+        Product newProduct = new Product();
+        newProduct.Name = productName;
+        newProduct.Description = productDescription;
+        newProduct.Price = productPrice;
+        db2.Add(newProduct);
+        db2.SaveChanges();
+        Console.WriteLine("Prodotto aggiunto correttamente!");
+
+
+
+        //read 
+        Console.WriteLine("------------------------------------");
+        Console.WriteLine("Ecco la lista Prodotti aggiornata:");
+        Console.WriteLine("");
+        List<Product> products = db2.Products.OrderBy(product => product.Name).ToList<Product>();
+
+        foreach (Product product in products)
+        {
+            Console.WriteLine("Nome prodotto: " + product.Name + "\n" + "Descrizione prodotto: " + product.Description + "\n" + "Prezzo: " + product.Price + " Euro");
+            Console.WriteLine("---------------------------------");
         }
         break;
 }
