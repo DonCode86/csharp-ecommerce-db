@@ -28,6 +28,9 @@ foreach(Customer customer in customers)
 customers[0].Email = "email@modificata.it";
     db.SaveChanges();
 
+//Remove
+db.Remove(customers[1]);
+db.SaveChanges();
 public class EcommerceContext: DbContext
 {
     public DbSet<Employee> Employees { get; set; }
