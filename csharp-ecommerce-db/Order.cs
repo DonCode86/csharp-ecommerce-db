@@ -7,7 +7,7 @@ public class Order
 
     public Employee Employee { get; set; }
 
-    public DateOnly Date { get; set; }
+    public DateTime Date { get; set; }
 
     public int Amount { get; set; }
 
