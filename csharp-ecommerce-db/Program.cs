@@ -7,13 +7,22 @@ Console.WriteLine("");
 //create 
 
 EcommerceContext db = new EcommerceContext();
-Customer newCustomer = new Customer();
-newCustomer.Name = "Daniele";
-newCustomer.Surname = "Ciccarelli";
-newCustomer.Email = "doncicca@gmail.com";
-db.Add(newCustomer);
-db.SaveChanges();
+//Customer newCustomer = new Customer();
+//newCustomer.Name = "Daniele";
+//newCustomer.Surname = "Ciccarelli";
+//newCustomer.Email = "doncicca@gmail.com";
+//db.Add(newCustomer);
+//db.SaveChanges();
 
+//read 
+
+Console.WriteLine("Recupero Lista Utenti:");
+List<Customer> customers = db.Customers.OrderBy(customer => customer.Name).ToList<Customer>();
+
+foreach(Customer customer in customers)
+{
+    Console.WriteLine(customer.Name + " " + customer.Surname + " ------> " + customer.Email);
+}
 public class EcommerceContext: DbContext
 {
     public DbSet<Employee> Employees { get; set; }
