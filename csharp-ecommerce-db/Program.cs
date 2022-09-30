@@ -4,6 +4,15 @@ using System.Security.Cryptography.X509Certificates;
 
 Console.WriteLine("");
 
+//create 
+
+EcommerceContext db = new EcommerceContext();
+Customer newCustomer = new Customer();
+newCustomer.Name = "Daniele";
+newCustomer.Surname = "Ciccarelli";
+newCustomer.Email = "doncicca@gmail.com";
+db.Add(newCustomer);
+db.SaveChanges();
 
 public class EcommerceContext: DbContext
 {
@@ -22,4 +31,7 @@ public class EcommerceContext: DbContext
         optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=db-ecommerce;Integrated Security=True");
     }
 }
+
+
+
 
