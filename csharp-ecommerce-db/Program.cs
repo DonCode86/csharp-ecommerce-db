@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 
 Console.WriteLine("");
-Console.WriteLine("Benvenuto! \n premi 1 per aggiungere un nuovo cliente \n premi 2 per aggiungere un nuovo prodotto");
+Console.WriteLine("Benvenuto! \npremi 1 per aggiungere un nuovo cliente \npremi 2 per aggiungere un nuovo prodotto");
 int userChoice = Convert.ToInt32(Console.ReadLine());
 switch (userChoice)
 {
